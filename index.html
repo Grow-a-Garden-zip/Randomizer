@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Grow a Garden Randomizer</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        background: linear-gradient(to bottom right, #e8f5e9, #ffffff);
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      h1 {
+        color: #2e7d32;
+        margin-bottom: 20px;
+        font-size: 28px;
+      }
+
+      .pet-box {
+        background-color: #a5d6a7;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+
+      .pet-name {
+        font-size: 24px;
+        font-weight: bold;
+        color: #1b5e20;
+      }
+
+      button {
+        background-color: #66bb6a;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 16px;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #388e3c;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="module">
+      import React, { useState } from 'https://esm.sh/react';
+      import { createRoot } from 'https://esm.sh/react-dom/client';
+
+      const pets = [
+        'Sprout Bunny',
+        'Leaf Cat',
+        'Flower Dog',
+        'Cactus Fox',
+        'Mushroom Sloth',
+        'Vine Dragon',
+        'Sunflower Duck'
+      ];
+
+      function App() {
+        const [pet, setPet] = useState(randomPet());
+
+        function randomPet() {
+          return pets[Math.floor(Math.random() * pets.length)];
+        }
+
+        function reroll() {
+          setPet(randomPet());
+        }
+
+        return (
+          <div className="container">
+            <h1>🌱 Grow a Garden: Egg Randomizer</h1>
+            <div className="pet-box">
+              <p className="pet-name">{pet}</p>
+            </div>
+            <button onClick={reroll}>🔁 Reroll</button>
+          </div>
+        );
+      }
+
+      const root = createRoot(document.getElementById('root'));
+      root.render(<App />);
+    </script>
+  </body>
+  </html>
